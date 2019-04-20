@@ -20,7 +20,8 @@ public class Database extends SQLiteOpenHelper {
                 +"ID_USER INTEGER PRIMARY KEY autoincrement,"
                 +"EMAIL VARCHAR(50) NOT NULL,"
                 +"NAME VARCHAR(50) NOT NULL,"
-                +"PASSWORD VARCHAR(30) NOT NULL);"
+                +"PASSWORD VARCHAR(30) NOT NULL,"
+                +"CPF VARCHAR(11) NOT NULL);"
         );
     }
 

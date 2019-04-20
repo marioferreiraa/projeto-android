@@ -19,6 +19,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mybookcase.R;
+import com.example.mybookcase.data.model.User;
+import com.example.mybookcase.data.persistence.UserDAO;
 import com.example.mybookcase.ui.login.LoginViewModel;
 import com.example.mybookcase.ui.login.LoginViewModelFactory;
 
@@ -108,11 +110,15 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loadingProgressBar.setVisibility(View.VISIBLE);
-                loginViewModel.login(usernameEditText.getText().toString(),
-                        passwordEditText.getText().toString());
+                //loadingProgressBar.setVisibility(View.VISIBLE);
+                //loginViewModel.login(usernameEditText.getText().toString(),
+                //        passwordEditText.getText().toString());
+
+            cadastrarUsers();
             }
         });
+
+
     }
 
     private void updateUiWithUser(LoggedInUserView model) {
@@ -123,5 +129,17 @@ public class LoginActivity extends AppCompatActivity {
 
     private void showLoginFailed(@StringRes Integer errorString) {
         Toast.makeText(getApplicationContext(), errorString, Toast.LENGTH_SHORT).show();
+    }
+
+    public void cadastrarUsers(){
+        User user1 = new User("aaaa@aa.aa","aaaaa aaaaaa","123Aa@aa","12345678909");
+        User user2 = new User("bbbb@bb.bb","bbbbb bbbbbb","123Bb@bb","11111111111");
+
+        UserDAO userDAO = new UserDAO(getApplicationContext());
+
+        userDAO.insertUser(user1);
+        userDAO.insertUser(user2);
+
+        userDAO.getUsers();
     }
 }
