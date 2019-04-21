@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
-
 import com.example.mybookcase.data.model.User;
 
 public class UserDAO {
@@ -27,18 +26,16 @@ public class UserDAO {
         contentValues.put("email", user.getEmail());
         contentValues.put("name", user.getNomeCompleto());
         contentValues.put("password", user.getSenha());
-        contentValues.put("cpf", user.getCpf());
 
-        if (getUser(user.getCpf())) {
+        if (getUser(user.getEmail(), user.getSenha())) {
             return myDatabase.insert(Database.TABLE_NAME, null, contentValues);
-
         } else {
             return -1;
         }
     }
 
     /**
-     * Método que lista todos os usuários da base de dados e escreve no Log da aplucação
+     * Método que lista todos os usuários da base de dados e escreve no Log da aplicação
      */
     public void getUsers(){
         Cursor cursor1 = myDatabase.query(Database.TABLE_NAME,null,null,null,null,null,null);
@@ -46,31 +43,28 @@ public class UserDAO {
             Log.i("testeDB", "Email: " + cursor1.getString(1));
             Log.i("testeDB", "Password: " + cursor1.getString(2));
             Log.i("testeDB", "Nome Completo: " + cursor1.getString(3));
-            Log.i("testeDB", "CPF: " + cursor1.getString(4));
         }
     }
 
 
     /**
      * Metodo para buscar um usuário cadastrado na base
-     * @param cpf
+     * @param email,password
      * @return
      */
-    public boolean getUser(String cpf) {
+    public boolean getUser(String email, String passwword) {
         Cursor cursor1;
         User userTemp = null;
         try{
-            cursor1 = myDatabase.rawQuery("SELECT * FROM table_user WHERE CPF = '" + cpf + "'", null);
+            cursor1 = myDatabase.rawQuery("SELECT * FROM table_user WHERE EMAIL = '" + email + "' AND PASSWORD = '"+ passwword + "'", null);
 
             while (cursor1.moveToNext()) {
-                userTemp = new User(cursor1.getString(1), cursor1.getString(2), cursor1.getString(3), cursor1.getString(4));
+                userTemp = new User(cursor1.getString(1), cursor1.getString(2), cursor1.getString(3));
             }
             cursor1.close();
-        }catch (Exception e){
+        }catch (Exception e) {
             e.printStackTrace();
         }
-
-
         boolean canInsert = userTemp == null;
         return canInsert;
     }

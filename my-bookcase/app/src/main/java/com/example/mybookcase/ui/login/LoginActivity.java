@@ -3,6 +3,7 @@ package com.example.mybookcase.ui.login;
 import android.app.Activity;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
@@ -19,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mybookcase.R;
+import com.example.mybookcase.data.RegisterActivity;
 import com.example.mybookcase.data.model.User;
 import com.example.mybookcase.data.persistence.UserDAO;
 import com.example.mybookcase.ui.login.LoginViewModel;
@@ -38,6 +40,7 @@ public class LoginActivity extends AppCompatActivity {
         final EditText usernameEditText = findViewById(R.id.username);
         final EditText passwordEditText = findViewById(R.id.password);
         final Button loginButton = findViewById(R.id.login);
+        final Button callRegister = findViewById(R.id.callRegister);
         final ProgressBar loadingProgressBar = findViewById(R.id.loading);
 
         loginViewModel.getLoginFormState().observe(this, new Observer<LoginFormState>() {
@@ -110,14 +113,28 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //loadingProgressBar.setVisibility(View.VISIBLE);
-                //loginViewModel.login(usernameEditText.getText().toString(),
-                //        passwordEditText.getText().toString());
-
-            cadastrarUsers();
+                try{
+                    UserDAO userDAO = new UserDAO(getApplicationContext());
+                    boolean allowLogin = userDAO.getUser(usernameEditText.getText().toString(),passwordEditText.getText().toString());
+                    if(!allowLogin){
+                        Toast.makeText(getApplicationContext(),"Login efetuado com sucesso",Toast.LENGTH_LONG).show();
+                    }else{
+                        Toast.makeText(getApplicationContext(),"Email ou senha inválidos",Toast.LENGTH_LONG).show();
+                    }
+                    userDAO.getUsers();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
             }
         });
 
+        callRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
@@ -132,8 +149,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void cadastrarUsers(){
-        User user1 = new User("aaaa@aa.aa","aaaaa aaaaaa","123Aa@aa","12345678909");
-        User user2 = new User("bbbb@bb.bb","bbbbb bbbbbb","123Bb@bb","11111111111");
+        User user1 = new User("aaaa@aa.aa","aaaaa aaaaaa","123Aa@aa");
+        User user2 = new User("bbbb@bb.bb","bbbbb bbbbbb","123Bb@bb");
 
         UserDAO userDAO = new UserDAO(getApplicationContext());
 
