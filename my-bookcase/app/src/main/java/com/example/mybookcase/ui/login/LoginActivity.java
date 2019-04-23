@@ -1,8 +1,11 @@
 package com.example.mybookcase.ui.login;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -115,13 +118,13 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 try{
                     UserDAO userDAO = new UserDAO(getApplicationContext());
+                    userDAO.getUsers();
                     boolean allowLogin = userDAO.getUser(usernameEditText.getText().toString(),passwordEditText.getText().toString());
                     if(!allowLogin){
                         Toast.makeText(getApplicationContext(),"Login efetuado com sucesso",Toast.LENGTH_LONG).show();
                     }else{
                         Toast.makeText(getApplicationContext(),"Email ou senha inválidos",Toast.LENGTH_LONG).show();
                     }
-                    userDAO.getUsers();
                 }catch (Exception e){
                     e.printStackTrace();
                 }
@@ -159,4 +162,5 @@ public class LoginActivity extends AppCompatActivity {
 
         userDAO.getUsers();
     }
+
 }
