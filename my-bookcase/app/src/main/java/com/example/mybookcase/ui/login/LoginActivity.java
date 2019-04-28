@@ -23,6 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mybookcase.R;
+import com.example.mybookcase.data.HomeActivity;
 import com.example.mybookcase.data.RegisterActivity;
 import com.example.mybookcase.data.model.User;
 import com.example.mybookcase.data.persistence.UserDAO;
@@ -122,6 +123,8 @@ public class LoginActivity extends AppCompatActivity {
                     boolean allowLogin = userDAO.getUser(usernameEditText.getText().toString(),passwordEditText.getText().toString());
                     if(!allowLogin){
                         Toast.makeText(getApplicationContext(),"Login efetuado com sucesso",Toast.LENGTH_LONG).show();
+                        Intent home = new Intent(LoginActivity.this, HomeActivity.class);
+                        startActivity(home);
                     }else{
                         Toast.makeText(getApplicationContext(),"Email ou senha inválidos",Toast.LENGTH_LONG).show();
                     }

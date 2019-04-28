@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/home"
+            android:title="@string/menu_dashboard" />
+
+        <item android:title="Filmes">
+            <menu>
+                <item
+                    android:id="@+id/nav_acervo_filmes"
+                    android:icon="@drawable/ic_menu_slideshow"
+                    android:title="@string/menu_acervo_filmes" />
+                <item
+                    android:id="@+id/nav_filmes_futuros"
+                    android:icon="@drawable/moovie"
+                    android:title="@string/menu_filmes_futuros" />
+            </menu>
+        </item>
+
+        <item android:title="Livros">
+            <menu>
+                <item
+                    android:id="@+id/navs_acervo_livros"
+                    android:icon="@drawable/books"
+                    android:title="@string/menu_acervo_livros" />
+                <item
+                    android:id="@+id/nav_livros_futuros"
+                    android:icon="@drawable/book"
+                    android:title="@string/menu_livros_futuros" />
+            </menu>
+        </item>
+
+
+    </group>
+
+    <item android:title="Communicate">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/about"
+                android:title="@string/menu_sobre" />
+            <item
+                android:id="@+id/nav_send"
+                android:icon="@drawable/logout"
+                android:title="@string/menu_logout" />
+        </menu>
+    </item>
+
+</menu>
