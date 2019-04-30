@@ -122,9 +122,9 @@ public class LoginActivity extends AppCompatActivity {
                     userDAO.getUsers();
                     boolean allowLogin = userDAO.getUser(usernameEditText.getText().toString(),passwordEditText.getText().toString());
                     if(!allowLogin){
-                        Toast.makeText(getApplicationContext(),"Login efetuado com sucesso",Toast.LENGTH_LONG).show();
                         Intent home = new Intent(LoginActivity.this, HomeActivity.class);
                         startActivity(home);
+                        //Toast.makeText(getApplicationContext(),"Login efetuado com sucesso",Toast.LENGTH_LONG).show();
                     }else{
                         Toast.makeText(getApplicationContext(),"Email ou senha inválidos",Toast.LENGTH_LONG).show();
                     }
@@ -139,6 +139,8 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
                 startActivity(intent);
+                /*Intent home = new Intent(LoginActivity.this, HomeActivity.class);
+                startActivity(home);*/
             }
         });
 
