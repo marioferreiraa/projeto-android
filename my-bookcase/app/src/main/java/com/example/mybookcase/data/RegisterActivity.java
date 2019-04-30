@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mybookcase.R;
@@ -27,6 +28,7 @@ public class RegisterActivity extends AppCompatActivity {
         final EditText fieldPass = findViewById(R.id.editPassword);
         final EditText fieldConfirm = findViewById(R.id.editConfirm);
         final Button buttonRegister = findViewById(R.id.buttonRegister);
+        final TextView linkLogin = findViewById(R.id.lnkLogin);
 
         buttonRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,5 +55,13 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
+        linkLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
     }
+
 }
