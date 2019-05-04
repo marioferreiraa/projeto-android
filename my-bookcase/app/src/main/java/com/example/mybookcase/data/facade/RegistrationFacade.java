@@ -5,7 +5,11 @@ import android.widget.Toast;
 
 import com.example.mybookcase.data.Exceptions.ValidateException;
 import com.example.mybookcase.data.controller.RegistrationController;
+import com.example.mybookcase.data.model.Book;
+import com.example.mybookcase.data.model.Item;
 import com.example.mybookcase.data.model.User;
+import com.example.mybookcase.data.persistence.BookDAO;
+import com.example.mybookcase.data.persistence.ItemDAO;
 import com.example.mybookcase.data.persistence.UserDAO;
 
 public class RegistrationFacade {
@@ -38,6 +42,25 @@ public class RegistrationFacade {
             Toast.makeText(c,"Cadastro realizado com sucesso", Toast.LENGTH_LONG).show();
         }else{
             Toast.makeText(c,"O usuário já encontra-se na base de dados", Toast.LENGTH_LONG).show();
+        }
+    }
+    public void insertBook(Book book) throws ValidateException {
+        BookDAO bookDAO = new BookDAO(c);
+        long insertBook = bookDAO.insertBook(book);
+        if(insertBook != -1){
+            Toast.makeText(c,"Cadastro realizado com sucesso", Toast.LENGTH_LONG).show();
+        }else{
+            Toast.makeText(c,"O livro já encontra-se na base de dados", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    public void insertItem(Item item) throws ValidateException {
+        ItemDAO itemDAO = new ItemDAO(c);
+        long insertItem = itemDAO.insertItem(item);
+        if(insertItem != -1){
+            Toast.makeText(c,"Cadastro realizado com sucesso", Toast.LENGTH_LONG).show();
+        }else{
+            Toast.makeText(c,"O Item já encontra-se na base de dados", Toast.LENGTH_LONG).show();
         }
     }
 

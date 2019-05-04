@@ -8,19 +8,12 @@ public class Book {
 
     private String name;
     private String description;
-    private Image image;
-
-    public Book(){}
+    //private Image image;
 
     public Book(String name, String description){
         this.setName(name);
         this.setDescription(description);
-    }
-
-    public Book(String name, String description, Image image){
-        this.setName(name);
-        this.setDescription(description);
-        this.setImage(image );
+        //this.setImage(image );
     }
 
     public String getName() {
@@ -39,11 +32,11 @@ public class Book {
         this.description = description;
     }
 
-    public Image getImage() {
+    /*public Image getImage() {
         return image;
     }
 
     public void setImage(Image image) {
         this.image = image;
-    }
+    }*/
 }

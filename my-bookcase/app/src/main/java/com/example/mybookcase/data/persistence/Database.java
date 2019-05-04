@@ -22,6 +22,18 @@ public class Database extends SQLiteOpenHelper {
                 +" NAME VARCHAR(50) NOT NULL, "
                 +" PASSWORD VARCHAR(30) NOT NULL) "
         );
+        sqLiteDatabase.execSQL(" CREATE TABLE table_book ( "
+                +" ID_BOOK INTEGER PRIMARY KEY autoincrement, "
+                +" NAME VARCHAR(50) NOT NULL, "
+                +" DESCRIPTION VARCHAR(150) ) "
+        );
+        // TYPE : BOOK OR MOVIE
+        sqLiteDatabase.execSQL(" CREATE TABLE table_item ( "
+                +" ID_ITEM INTEGER PRIMARY KEY autoincrement, "
+                +" NAME VARCHAR(50) NOT NULL, "
+                +" DESCRIPTION VARCHAR(150), "
+                +" TYPE VARCHAR(5) )"
+        );
     }
 
     @Override
@@ -29,6 +41,8 @@ public class Database extends SQLiteOpenHelper {
         if(oldVersion == 5 && newVersion == 6){
             Log.d("onUpgrade", "Alterando a tabela");
             sqLiteDatabase.execSQL("DROP TABLE IF EXISTS '"+ TABLE_NAME +"'");
+            sqLiteDatabase.execSQL("DROP TABLE IF EXISTS table_book");
+            sqLiteDatabase.execSQL("DROP TABLE IF EXISTS table_item");
             onCreate(sqLiteDatabase);
         }
     }
