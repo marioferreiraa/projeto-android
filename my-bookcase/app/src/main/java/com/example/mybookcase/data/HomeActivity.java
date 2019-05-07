@@ -129,15 +129,16 @@ public class HomeActivity extends AppCompatActivity
         mImageUrls.add("https://i.imgur.com/ZcLLrkY.jpg");
         mNames.add("Washington");
 
-        initRecyclerView();
+        initRecyclerView(findViewById(R.id.recyclerHomeFilms));
+        initRecyclerView(findViewById(R.id.recyclerHomeBooks));
 
     }
 
-    private void initRecyclerView(){
+    private void initRecyclerView(View v){
         Log.d(TAG, "initRecyclerView: init recyclerview");
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-        RecyclerView recyclerView = findViewById(R.id.recyclerView);
+        RecyclerView recyclerView = findViewById(v.getId());
         recyclerView.setLayoutManager(layoutManager);
         RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, mNames, mImageUrls);
         recyclerView.setAdapter(adapter);
