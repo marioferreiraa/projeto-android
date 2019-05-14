@@ -5,6 +5,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
+import android.widget.Toast;
+
 import com.example.mybookcase.data.model.Item;
 
 public class ItemDAO {
@@ -24,9 +26,11 @@ public class ItemDAO {
         contentValues.put("name", item.getName());
         contentValues.put("description", item.getDescription());
         contentValues.put("type", item.getType());
-        //contentValues.put("image", book.getImage());
+        contentValues.put("path_img", item.getPathImage());
+        contentValues.put("is_acervo", item.getIsAcervo());
 
-        if (getItem(item.getName(), item.getDescription())) {
+        if (getItem(item.getName(),item.getDescription())) {
+            System.out.println("============================================ Inseriu o item ===========================================");
             return myDatabase.insert("table_item", null, contentValues);
         } else {
             return -1;
@@ -38,18 +42,43 @@ public class ItemDAO {
      */
     public void getItens(){
         Cursor cursor1 = myDatabase.query("table_item",null,null,null,null,null,null);
+        System.out.println("============================================ Buscando os item ===========================================");
         while (cursor1.moveToNext()){
-            Log.i("testeDB", "name: " + cursor1.getString(1));
-            Log.i("testeDB", "description: " + cursor1.getString(2));
-            Log.i("testeDB", "type: " + cursor1.getString(3));
-            // Log.i("testeDB", "Image " + cursor1.getString(3));
+            Log.i("testeDB", "id: " + cursor1.getString(1));
+            Log.i("testeDB", "name: " + cursor1.getString(2));
+            Log.i("testeDB", "description: " + cursor1.getString(3));
+            Log.i("testeDB", "type: " + cursor1.getString(4));
+            Log.i("testeDB","path_img: " + cursor1.getString(5));
+            Log.i("testeDB","isAcervo: " + cursor1.getString(6));
         }
     }
+
     /**
      * Metodo para buscar um item cadastrado na base
-     * @param name,description
+     * @param id
      * @return
      */
+    public boolean getItem(int id) {
+        Cursor cursor1;
+        Item itemTemp = null;
+        try{
+            cursor1 = myDatabase.rawQuery("SELECT * FROM table_item WHERE ID_ITEM = '" + id, null);
+            while (cursor1.moveToNext()) {
+                try{
+                    itemTemp = new Item(cursor1.getInt(1), cursor1.getString(2), cursor1.getString(3), cursor1.getString(4), cursor1.getString(5), cursor1.getString(6));
+                    System.out.println("============================================ Buscando o item ===========================================");
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+            cursor1.close();
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        boolean canInsert = itemTemp == null;
+        return canInsert;
+    }
+
     public boolean getItem(String name, String description) {
         Cursor cursor1;
         Item itemTemp = null;

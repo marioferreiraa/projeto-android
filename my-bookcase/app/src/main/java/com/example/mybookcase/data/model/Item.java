@@ -5,19 +5,28 @@ import android.media.Image;
 
 public class Item {
 
+    private Integer id;
     private String name;
     private String description;
     private String type;
+    private String pathImage;
     private int imageId;
     private Drawable testImage;
-    //private Image image;
+    private String isAcervo;
 
     public Item(String name, String description, Drawable testImage/*,String type*/){
         this.setName(name);
         this.setDescription(description);
         this.setTestImage(testImage);
-        //this.setType(type);
-        //this.setImage(image );
+    }
+
+    public Item(Integer id, String name, String description, String type, String pathImage, String isAcervo){
+        this.setName(name);
+        this.setDescription(description);
+        this.setType(type);
+        this.setPathImage(pathImage);
+        this.setId(id);
+        this.setIsAcervo(isAcervo);
     }
 
     public String getName() {
@@ -60,12 +69,28 @@ public class Item {
         this.testImage = testImage;
     }
 
-    /* public Image getImage() {
-        return image;
+    public String getPathImage() {
+        return pathImage;
     }
 
-    public void setImage(Image image) {
-        this.image = image;
-    }*/
+    public void setPathImage(String pathImage) {
+        this.pathImage = pathImage;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getIsAcervo() {
+        return isAcervo;
+    }
+
+    public void setIsAcervo(String isAcervo) {
+        this.isAcervo = isAcervo;
+    }
 }
 

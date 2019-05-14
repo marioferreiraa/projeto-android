@@ -11,7 +11,7 @@ public class Database extends SQLiteOpenHelper {
     public static final String TABLE_NAME = "table_user";
 
     public Database(Context context){
-        super(context, DATABASE_NAME, null, 6);
+        super(context, DATABASE_NAME, null, 8);
     }
 
     @Override
@@ -31,14 +31,16 @@ public class Database extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(" CREATE TABLE table_item ( "
                 +" ID_ITEM INTEGER PRIMARY KEY autoincrement, "
                 +" NAME VARCHAR(50) NOT NULL, "
-                +" DESCRIPTION VARCHAR(150), "
-                +" TYPE VARCHAR(5) )"
+                +" DESCRIPTION VARCHAR(150) NOT NULL, "
+                +" TYPE VARCHAR(5) NOT NULL,"
+                +" PATH_IMG VARCHAR(50),"
+                +" IS_ACERVO VARCHAR(1) NOT NULL)"
         );
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
-        if(oldVersion == 5 && newVersion == 6){
+        if(oldVersion == 7 && newVersion == 8){
             Log.d("onUpgrade", "Alterando a tabela");
             sqLiteDatabase.execSQL("DROP TABLE IF EXISTS '"+ TABLE_NAME +"'");
             sqLiteDatabase.execSQL("DROP TABLE IF EXISTS table_book");

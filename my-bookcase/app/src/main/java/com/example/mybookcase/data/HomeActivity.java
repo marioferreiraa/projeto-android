@@ -15,11 +15,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 
 import com.example.mybookcase.R;
+import com.example.mybookcase.data.model.Item;
+import com.example.mybookcase.data.persistence.ItemDAO;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +34,10 @@ public class HomeActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
+
+        ItemDAO itemDAO = new ItemDAO(getApplicationContext());
+        Item item1 = new Item(null,"Harry Potter e a Camara secreta", "Filme de JKR", "MOVIE", "","N");
+        itemDAO.insertItem(item1);
     }
 
     @Override
@@ -78,8 +82,8 @@ public class HomeActivity extends AppCompatActivity
         } else if (id == R.id.navs_acervo_livros) {
             //fragmentManager.beginTransaction().replace(R.id.conteudo_fragmento, new FragmentoAcervoLivros());
             getSupportFragmentManager().beginTransaction().replace(R.id.conteudo_fragmento, new FragmentoAcervoLivros()).commit();
-        } else if (id == R.id.nav_send) {
-
+        } else if (id == R.id.nav_acervo_filmes) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.conteudo_fragmento, new FragmentoAcervoFilmes()).commit();
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
