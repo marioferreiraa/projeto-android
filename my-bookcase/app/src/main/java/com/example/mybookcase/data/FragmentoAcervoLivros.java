@@ -20,16 +20,16 @@ public class FragmentoAcervoLivros extends Fragment {
 
     View minhaView;
 
-    private ViewStub stubGrid;
-    private ViewStub stubList;
-    private ListView listView;
-    private ListViewAdapter listViewAdapter;
-    private GridViewAdapter gridViewAdapter;
-    private List<Item> productList;
-    private int currentViewMode = 0;
+    //private ViewStub stubGrid;
+    //private ViewStub stubList;
+    //private ListView listView;
+    //private ListViewAdapter listViewAdapter;
+    //private GridViewAdapter gridViewAdapter;
+    //private List<Item> productList;
+    //private int currentViewMode = 0;
 
-    static final int VIEW_MODE_LISTVIEW = 0;
-    static final int VIEW_MODE_GRIDVIEW = 1;
+    //static final int VIEW_MODE_LISTVIEW = 0;
+    //static final int VIEW_MODE_GRIDVIEW = 1;
 
 
     @Override
