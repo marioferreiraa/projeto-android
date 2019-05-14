@@ -1,17 +1,22 @@
 package com.example.mybookcase.data.model;
 
+import android.graphics.drawable.Drawable;
 import android.media.Image;
 
 public class Item {
+
     private String name;
     private String description;
     private String type;
+    private int imageId;
+    private Drawable testImage;
     //private Image image;
 
-    public Item(String name, String description,String type){
+    public Item(String name, String description, Drawable testImage/*,String type*/){
         this.setName(name);
         this.setDescription(description);
-        this.setType(type);
+        this.setTestImage(testImage);
+        //this.setType(type);
         //this.setImage(image );
     }
 
@@ -39,7 +44,23 @@ public class Item {
         this.type = type;
     }
 
-   /* public Image getImage() {
+    public int getImageId() {
+        return imageId;
+    }
+
+    public void setImageId(int imageId) {
+        this.imageId = imageId;
+    }
+
+    public Drawable getTestImage() {
+        return testImage;
+    }
+
+    public void setTestImage(Drawable testImage) {
+        this.testImage = testImage;
+    }
+
+    /* public Image getImage() {
         return image;
     }
 

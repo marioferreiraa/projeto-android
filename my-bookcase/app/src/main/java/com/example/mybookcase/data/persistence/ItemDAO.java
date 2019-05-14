@@ -57,7 +57,11 @@ public class ItemDAO {
             cursor1 = myDatabase.rawQuery("SELECT * FROM table_item WHERE NAME = '" + name, null);
 
             while (cursor1.moveToNext()) {
-                itemTemp = new Item(cursor1.getString(1), cursor1.getString(2), cursor1.getString(3));
+                try{
+                    //itemTemp = new Item(cursor1.getString(1), cursor1.getString(2), cursor1.getString(3));
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
             }
             cursor1.close();
         }catch (Exception e) {

@@ -1,11 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/textView3"
+    <ListView
+        android:id="@+id/listAcervoLivros"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <!--ViewStub
+        android:id="@+id/stub_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Acervo de livro" />
-</LinearLayout>
+        android:layout_marginTop="10dp"
+        android:inflatedId="@+id/showlayout"
+        android:layout="@layout/my_listview"/>
+
+    <ViewStub
+        android:id="@+id/stub_grid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:inflatedId="@+id/showlayout"
+        android:layout="@layout/my_gridview"/-->
+
+</FrameLayout>
