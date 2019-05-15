@@ -29,14 +29,14 @@ public class RegisterItemActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                int id = 0;
+
                 String name = fieldName.getText().toString();
                 String desc = fieldDesc.getText().toString();
                 String type = fieldType.getText().toString();
                 String pathImage = fieldPath.getText().toString();
-                String isAcervo = fieldPath.getText().toString();
 
-                    Item item = new Item(id, name, desc, type, pathImage, isAcervo);
+
+                    Item item = new Item(null, name, desc, type, pathImage, "Y");
                 RegistrationFacade rF = new RegistrationFacade(getApplicationContext(), RegisterItemActivity.this);
                 try {
                     rF.insertItem(item);
