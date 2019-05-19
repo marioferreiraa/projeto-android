@@ -66,7 +66,7 @@ public class ItemAdapter extends BaseAdapter {
 
         holder.titulo.setText(currentItem.getName());
         holder.desc.setText(currentItem.getDescription());
-        holder.img.setImageDrawable(currentItem.getTestImage());
+        holder.img.setImageDrawable(currentItem.getImage());
 
         return convertView;
     }

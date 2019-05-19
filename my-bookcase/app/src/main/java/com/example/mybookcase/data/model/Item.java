@@ -5,6 +5,10 @@ import android.media.Image;
 
 public class Item {
 
+    /***
+     * ====================== Lembrar de LImpar essa classe =========================
+     */
+
     private Integer id;
     private String name;
     private String description;
@@ -12,6 +16,7 @@ public class Item {
     private String pathImage;
     private int imageId;
     private Drawable testImage;
+    private Drawable image;
     private String isAcervo;
 
     public Item(String name, String description, Drawable testImage/*,String type*/){
@@ -91,6 +96,14 @@ public class Item {
 
     public void setIsAcervo(String isAcervo) {
         this.isAcervo = isAcervo;
+    }
+
+    public Drawable getImage() {
+        return image;
+    }
+
+    public void setImage(Drawable image) {
+        this.image = image;
     }
 }
 

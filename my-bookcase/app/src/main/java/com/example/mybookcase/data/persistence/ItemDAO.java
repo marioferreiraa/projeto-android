@@ -9,6 +9,9 @@ import android.widget.Toast;
 
 import com.example.mybookcase.data.model.Item;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ItemDAO {
     private SQLiteDatabase myDatabase;
 
@@ -40,17 +43,23 @@ public class ItemDAO {
     /**
      * Método que lista todos os items da base de dados e escreve no Log da aplicação
      */
-    public void getItens(){
+    public ArrayList<Item> getItens(){
+        ArrayList<Item> listaItens = new ArrayList<>();
         Cursor cursor1 = myDatabase.query("table_item",null,null,null,null,null,null);
         System.out.println("============================================ Buscando os item ===========================================");
         while (cursor1.moveToNext()){
-            Log.i("testeDB", "id: " + cursor1.getString(1));
-            Log.i("testeDB", "name: " + cursor1.getString(2));
-            Log.i("testeDB", "description: " + cursor1.getString(3));
-            Log.i("testeDB", "type: " + cursor1.getString(4));
-            Log.i("testeDB","path_img: " + cursor1.getString(5));
-            Log.i("testeDB","isAcervo: " + cursor1.getString(6));
+            Log.i("testeDB", "id: " + cursor1.getString(0));
+            Log.i("testeDB", "name: " + cursor1.getString(1));
+            Log.i("testeDB", "description: " + cursor1.getString(2));
+            Log.i("testeDB", "type: " + cursor1.getString(3));
+            Log.i("testeDB","path_img: " + cursor1.getString(4));
+            Log.i("testeDB","isAcervo: " + cursor1.getString(5));
+
+            Item item = new Item(cursor1.getInt(0),cursor1.getString(1), cursor1.getString(2),cursor1.getString(3),cursor1.getString(4),cursor1.getString(5));
+            listaItens.add(item);
         }
+
+        return listaItens;
     }
 
     /**

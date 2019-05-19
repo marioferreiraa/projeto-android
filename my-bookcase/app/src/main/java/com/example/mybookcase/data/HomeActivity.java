@@ -36,8 +36,9 @@ public class HomeActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         ItemDAO itemDAO = new ItemDAO(getApplicationContext());
-        Item item1 = new Item(null,"Harry Potter e a Camara secreta", "Filme de JKR", "MOVIE", "","N");
+        Item item1 = new Item(null,"Harry Potter e o prisioneiro de azkaban", "Filme de JKR", "MOVIE", "","S");
         itemDAO.insertItem(item1);
+        itemDAO.getItens();
     }
 
     @Override
