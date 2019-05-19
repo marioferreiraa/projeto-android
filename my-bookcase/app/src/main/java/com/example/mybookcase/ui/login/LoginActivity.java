@@ -46,6 +46,15 @@ public class LoginActivity extends AppCompatActivity {
         final Button loginButton = findViewById(R.id.login);
         final Button callRegister = findViewById(R.id.callRegister);
         final ProgressBar loadingProgressBar = findViewById(R.id.loading);
+        final Button btnFast = findViewById(R.id.btnFastLogin);
+
+        btnFast.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                usernameEditText.setText("mario@aa.aa");
+                passwordEditText.setText("Teste@123");
+            }
+        });
 
         loginViewModel.getLoginFormState().observe(this, new Observer<LoginFormState>() {
             @Override

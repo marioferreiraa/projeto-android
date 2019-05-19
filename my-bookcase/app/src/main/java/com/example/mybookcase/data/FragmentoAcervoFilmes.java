@@ -56,7 +56,7 @@ public class FragmentoAcervoFilmes extends Fragment {
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    Toast.makeText(getContext(), ((Item)parent.getItemAtPosition(position)).getName(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), ((Item)parent.getItemAtPosition(position)).getId().toString(), Toast.LENGTH_SHORT).show();
                 }
             });
         }

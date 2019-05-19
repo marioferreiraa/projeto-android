@@ -114,4 +114,12 @@
         tools:layout_editor_absoluteY="57dp"
         tools:ignore="MissingConstraints" />
 
+    <Button
+        android:id="@+id/btnFastLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fast Login"
+        tools:layout_editor_absoluteX="22dp"
+        tools:layout_editor_absoluteY="197dp" />
+
 </android.support.constraint.ConstraintLayout>
