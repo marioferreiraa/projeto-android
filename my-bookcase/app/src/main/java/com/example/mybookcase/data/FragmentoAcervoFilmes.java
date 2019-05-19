@@ -1,5 +1,8 @@
 package com.example.mybookcase.data;
 
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -24,7 +27,6 @@ public class FragmentoAcervoFilmes extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         view = inflater.inflate(R.layout.layout_acervo_filmes, container, false);
-
         ArrayList<Item> list = new ArrayList<>();
 
         try{
@@ -35,6 +37,13 @@ public class FragmentoAcervoFilmes extends Fragment {
         }
 
         if(list.size() > 0){
+
+            for(Item linha : list){
+                if(linha.getImage() == null){
+                    linha.setImage(getResources().getDrawable(R.drawable.no_image_default));
+                }
+            }
+
             ItemAdapter itemAdapter = new ItemAdapter(getContext(), list);
 
             ListView listView = (ListView) view.findViewById(R.id.listAcervoFilmes);

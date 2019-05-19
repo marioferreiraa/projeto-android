@@ -6,7 +6,7 @@ import android.media.Image;
 public class Item {
 
     /***
-     * ====================== Lembrar de LImpar essa classe =========================
+     * ====================== Lembrar de Limpar essa classe =========================
      */
 
     private Integer id;
