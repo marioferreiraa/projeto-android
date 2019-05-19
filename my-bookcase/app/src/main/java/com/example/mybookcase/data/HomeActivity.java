@@ -2,6 +2,9 @@ package com.example.mybookcase.data;
 
 import android.app.FragmentManager;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
@@ -17,6 +20,8 @@ import android.view.Menu;
 import com.example.mybookcase.R;
 import com.example.mybookcase.data.model.Item;
 import com.example.mybookcase.data.persistence.ItemDAO;
+
+import java.io.ByteArrayOutputStream;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -36,7 +41,9 @@ public class HomeActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         ItemDAO itemDAO = new ItemDAO(getApplicationContext());
-        Item item1 = new Item(null,"Harry Potter e o prisioneiro de azkaban", "Filme de JKR", "MOVIE", "","S");
+        Bitmap imgDefault = BitmapFactory.decodeResource(getResources(), R.drawable.hp1);
+        byte[] imgParsed = getBytesFromBitmap(imgDefault);
+        Item item1 = new Item(null,"Harry Potter e o prisioneiro de azkaban", "Filme de JKR", "MOVIE", "",null);
         itemDAO.insertItem(item1);
         itemDAO.getItens();
     }
@@ -90,6 +97,12 @@ public class HomeActivity extends AppCompatActivity
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public byte[] getBytesFromBitmap(Bitmap bitmap) {
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 70, stream);
+        return stream.toByteArray();
     }
 
 }

@@ -13,7 +13,7 @@ public class Item {
     private String name;
     private String description;
     private String type;
-    private String pathImage;
+    private byte[] imageByte;
     private int imageId;
     private Drawable testImage;
     private Drawable image;
@@ -25,13 +25,13 @@ public class Item {
         this.setTestImage(testImage);
     }
 
-    public Item(Integer id, String name, String description, String type, String pathImage, String isAcervo){
+    public Item(Integer id, String name, String description, String type, String isAcervo, byte[] imageByte){
+        this.setId(id);
         this.setName(name);
         this.setDescription(description);
         this.setType(type);
-        this.setPathImage(pathImage);
-        this.setId(id);
         this.setIsAcervo(isAcervo);
+        this.setImageByte(imageByte);
     }
 
     public String getName() {
@@ -74,14 +74,6 @@ public class Item {
         this.testImage = testImage;
     }
 
-    public String getPathImage() {
-        return pathImage;
-    }
-
-    public void setPathImage(String pathImage) {
-        this.pathImage = pathImage;
-    }
-
     public Integer getId() {
         return id;
     }
@@ -103,5 +95,12 @@ public class Item {
     public void setImage(Drawable image) {
         this.image = image;
     }
-}
 
+    public byte[] getImageByte() {
+        return imageByte;
+    }
+
+    public void setImageByte(byte[] imageByte) {
+        this.imageByte = imageByte;
+    }
+}

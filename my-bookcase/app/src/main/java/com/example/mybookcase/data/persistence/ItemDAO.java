@@ -29,8 +29,9 @@ public class ItemDAO {
         contentValues.put("name", item.getName());
         contentValues.put("description", item.getDescription());
         contentValues.put("type", item.getType());
-        contentValues.put("path_img", item.getPathImage());
         contentValues.put("is_acervo", item.getIsAcervo());
+        contentValues.put("image", item.getImageByte());
+
 
         if (getItem(item.getName(),item.getDescription())) {
             System.out.println("============================================ Inseriu o item ===========================================");
@@ -52,10 +53,11 @@ public class ItemDAO {
             Log.i("testeDB", "name: " + cursor1.getString(1));
             Log.i("testeDB", "description: " + cursor1.getString(2));
             Log.i("testeDB", "type: " + cursor1.getString(3));
-            Log.i("testeDB","path_img: " + cursor1.getString(4));
-            Log.i("testeDB","isAcervo: " + cursor1.getString(5));
+            Log.i("testeDB","isAcervo: " + cursor1.getString(4));
+            Log.i("testeDB","image: " + cursor1.getBlob(5));
 
-            Item item = new Item(cursor1.getInt(0),cursor1.getString(1), cursor1.getString(2),cursor1.getString(3),cursor1.getString(4),cursor1.getString(5));
+
+            Item item = new Item(cursor1.getInt(0),cursor1.getString(1), cursor1.getString(2),cursor1.getString(3),cursor1.getString(4),cursor1.getBlob(5));
             listaItens.add(item);
         }
 
@@ -74,7 +76,7 @@ public class ItemDAO {
             cursor1 = myDatabase.rawQuery("SELECT * FROM table_item WHERE ID_ITEM = '" + id, null);
             while (cursor1.moveToNext()) {
                 try{
-                    itemTemp = new Item(cursor1.getInt(1), cursor1.getString(2), cursor1.getString(3), cursor1.getString(4), cursor1.getString(5), cursor1.getString(6));
+                    itemTemp = new Item(cursor1.getInt(0), cursor1.getString(1), cursor1.getString(2), cursor1.getString(3), cursor1.getString(4), cursor1.getBlob(5));
                     System.out.println("============================================ Buscando o item ===========================================");
                 }catch (Exception e){
                     e.printStackTrace();

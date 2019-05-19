@@ -1,6 +1,7 @@
 package com.example.mybookcase.data;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -38,9 +39,12 @@ public class FragmentoAcervoFilmes extends Fragment {
 
         if(list.size() > 0){
 
-            for(Item linha : list){
-                if(linha.getImage() == null){
-                    linha.setImage(getResources().getDrawable(R.drawable.no_image_default));
+            for(Item item : list){
+                if(item.getImageByte() == null){
+                    item.setImage(getResources().getDrawable(R.drawable.no_image_default));
+                }else{
+                    Drawable img = new BitmapDrawable(getResources(), BitmapFactory.decodeByteArray(item.getImageByte(),0,item.getImageByte().length));
+                    item.setImage(img);
                 }
             }
 

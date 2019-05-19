@@ -25,7 +25,7 @@ public class RegisterItemActivity extends AppCompatActivity {
         final Button buttonRegister = findViewById(R.id.buttonRegisterItem);
 
 
-        buttonRegister.setOnClickListener(new View.OnClickListener() {
+        /*buttonRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -36,7 +36,7 @@ public class RegisterItemActivity extends AppCompatActivity {
                 String pathImage = fieldPath.getText().toString();
 
 
-                    Item item = new Item(null, name, desc, type, pathImage, "Y");
+                Item item = new Item(null, name, desc, type, pathImage, "Y");
                 RegistrationFacade rF = new RegistrationFacade(getApplicationContext(), RegisterItemActivity.this);
                 try {
                     rF.insertItem(item);
@@ -45,7 +45,7 @@ public class RegisterItemActivity extends AppCompatActivity {
                 }
 
             }
-        });
+        });*/
 
     }
 

@@ -11,7 +11,7 @@ public class Database extends SQLiteOpenHelper {
     public static final String TABLE_NAME = "table_user";
 
     public Database(Context context){
-        super(context, DATABASE_NAME, null, 8);
+        super(context, DATABASE_NAME, null, 9);
     }
 
     @Override
@@ -33,14 +33,14 @@ public class Database extends SQLiteOpenHelper {
                 +" NAME VARCHAR(50) NOT NULL, "
                 +" DESCRIPTION VARCHAR(150) NOT NULL, "
                 +" TYPE VARCHAR(5) NOT NULL,"
-                +" PATH_IMG VARCHAR(50),"
-                +" IS_ACERVO VARCHAR(1) NOT NULL)"
+                +" IS_ACERVO VARCHAR(1) NOT NULL,"
+                +" IMAGE BLOB )"
         );
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
-        if(oldVersion == 7 && newVersion == 8){
+        if(oldVersion == 8 && newVersion == 9){
             Log.d("onUpgrade", "Alterando a tabela");
             sqLiteDatabase.execSQL("DROP TABLE IF EXISTS '"+ TABLE_NAME +"'");
             sqLiteDatabase.execSQL("DROP TABLE IF EXISTS table_book");
