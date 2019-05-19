@@ -86,9 +86,7 @@ public class Item {
         return id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+    public void setId(Integer id) { this.id = id; }
 
     public String getIsAcervo() {
         return isAcervo;

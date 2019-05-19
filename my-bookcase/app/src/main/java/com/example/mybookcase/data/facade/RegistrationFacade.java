@@ -48,7 +48,7 @@ public class RegistrationFacade {
         BookDAO bookDAO = new BookDAO(c);
         long insertBook = bookDAO.insertBook(book);
         if(insertBook != -1){
-            Toast.makeText(c,"Cadastro realizado com sucesso", Toast.LENGTH_LONG).show();
+            Toast.makeText(c,"Livro Incluido com sucesso", Toast.LENGTH_LONG).show();
         }else{
             Toast.makeText(c,"O livro já encontra-se na base de dados", Toast.LENGTH_LONG).show();
         }
@@ -58,7 +58,7 @@ public class RegistrationFacade {
         ItemDAO itemDAO = new ItemDAO(c);
         long insertItem = itemDAO.insertItem(item);
         if(insertItem != -1){
-            Toast.makeText(c,"Cadastro realizado com sucesso", Toast.LENGTH_LONG).show();
+            Toast.makeText(c,"Item incluido com sucesso", Toast.LENGTH_LONG).show();
         }else{
             Toast.makeText(c,"O Item já encontra-se na base de dados", Toast.LENGTH_LONG).show();
         }
