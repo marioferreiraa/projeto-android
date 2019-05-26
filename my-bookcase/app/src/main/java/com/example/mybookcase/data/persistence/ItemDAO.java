@@ -73,7 +73,7 @@ public class ItemDAO {
         Cursor cursor1;
         Item itemTemp = null;
         try{
-            cursor1 = myDatabase.rawQuery("SELECT * FROM table_item WHERE ID_ITEM = '" + id, null);
+            cursor1 = myDatabase.rawQuery("SELECT * FROM table_item WHERE ID_ITEM = " + id, null);
             while (cursor1.moveToNext()) {
                 try{
                     itemTemp = new Item(cursor1.getInt(0), cursor1.getString(1), cursor1.getString(2), cursor1.getString(3), cursor1.getString(4), cursor1.getBlob(5));
@@ -94,7 +94,7 @@ public class ItemDAO {
         Cursor cursor1;
         Item itemTemp = null;
         try{
-            cursor1 = myDatabase.rawQuery("SELECT * FROM table_item WHERE NAME = '" + name, null);
+            cursor1 = myDatabase.rawQuery("SELECT * FROM table_item WHERE NAME = '" + name +"'", null);
 
             while (cursor1.moveToNext()) {
                 try{
@@ -110,4 +110,26 @@ public class ItemDAO {
         boolean canInsert = itemTemp == null;
         return canInsert;
     }
+
+    /**
+     * Metodo que filtra por item específico (Livro ou Filme, Acervo ou Indicação) no banco de dados
+     * @param isAcervo
+     * @param type
+     * @return
+     */
+    public ArrayList<Item> getPersonItens(String isAcervo, String type){
+        ArrayList<Item> listaPersonalizada = new ArrayList<>();
+        Cursor cur;
+        try{
+            cur = myDatabase.rawQuery("SELECT * FROM table_item WHERE TYPE = '" + type + "' AND IS_ACERVO = '"+ isAcervo +"'", null);
+            while (cur.moveToNext()){
+                Item item = new Item(cur.getInt(0),cur.getString(1), cur.getString(2),cur.getString(3),cur.getString(4),cur.getBlob(5));
+                listaPersonalizada.add(item);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return listaPersonalizada;
+    }
+
 }

@@ -1,7 +1,6 @@
 package com.example.mybookcase.data;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -20,9 +19,8 @@ import com.example.mybookcase.data.model.Item;
 import com.example.mybookcase.data.persistence.ItemDAO;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class FragmentoAcervoFilmes extends Fragment {
+public class FragmentoIndicFIlmes extends Fragment {
 
     View view;
 
@@ -31,19 +29,18 @@ public class FragmentoAcervoFilmes extends Fragment {
 
         super.onCreate(savedInstanceState);
 
-        view = inflater.inflate(R.layout.layout_acervo_filmes, container, false);
+        view = inflater.inflate(R.layout.layout_indic_filmes, container, false);
 
         ArrayList<Item> list = new ArrayList<>();
 
         try{
             ItemDAO itemDAO = new ItemDAO(getContext());
-            list = itemDAO.getPersonItens("s", "movie");
-        }catch(Exception e){
+            list = itemDAO.getPersonItens("n", "movie");
+        }catch (Exception e){
             e.printStackTrace();
         }
 
         if(list.size() > 0){
-
             for(Item item : list){
                 if(item.getImageByte() == null){
                     item.setImage(getResources().getDrawable(R.drawable.no_image_default));
@@ -55,7 +52,7 @@ public class FragmentoAcervoFilmes extends Fragment {
 
             ItemAdapter itemAdapter = new ItemAdapter(getContext(), list);
 
-            ListView listView = (ListView) view.findViewById(R.id.listAcervoFilmes);
+            ListView listView = (ListView) view.findViewById(R.id.listIndicFilmes);
             listView.setAdapter(itemAdapter);
 
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
@@ -77,7 +74,9 @@ public class FragmentoAcervoFilmes extends Fragment {
                     startActivity(intent);
                 }
             });
+
         }
+
         return view;
     }
 

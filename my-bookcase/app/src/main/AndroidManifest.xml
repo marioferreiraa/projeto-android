@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".inside_page_item"></activity>
+        <activity android:name=".InsidePageItem"></activity>
         <activity
             android:name=".data.HomeActivity"
             android:label="@string/title_activity_home"

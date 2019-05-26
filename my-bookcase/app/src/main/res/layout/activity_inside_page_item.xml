@@ -1,9 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".inside_page_item">
+    android:orientation="vertical"
+    android:weightSum="10"
+    android:paddingTop="30dp"
+    tools:context=".InsidePageItem">
 
-</android.support.constraint.ConstraintLayout>
+    <ImageView
+        android:id="@+id/itemCover"
+        android:layout_width="250dp"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_weight="5"
+        android:src="@drawable/no_image_default" />
+
+    <TextView
+        android:id="@+id/itemName"
+        android:layout_width="300dp"
+        android:layout_height="30dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:layout_weight="0.5"
+        android:gravity="center"
+        android:text="Harry Potter e o prisioneiro de Azkaban"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="85dp"
+        tools:layout_editor_absoluteY="222dp" />
+
+    <TextView
+        android:id="@+id/itemDescription"
+        android:layout_width="300dp"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:gravity="center_vertical"
+        android:layout_marginTop="30dp"
+        android:layout_weight="2"
+        android:textSize="14sp"
+        android:text="O terceiro ano de Harry Potter em Hogwarts começa mal quando ele descobre que o assassino Sirius Black escapou da prisão de Azkaban e está empenhado em matá-lo. Enquanto o gato de Hermione atormenta o rato doente de Ron, um bando de dementadores são enviados para proteger a escola de Sirius Black. Um professor misterioso ajuda Harry a aprender a se defender." />
+
+    <TextView
+        android:id="@+id/itemVerMais"
+        android:layout_width="300dp"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_weight=".4"
+        android:text="Ver mais..."
+        android:textColor="#0645AD"
+        android:textSize="18sp" />
+</LinearLayout>

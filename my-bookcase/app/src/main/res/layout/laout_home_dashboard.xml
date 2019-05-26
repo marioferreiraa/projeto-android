@@ -5,12 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/holo_blue_dark"
-    android:padding="20dp"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".data.HomeActivity"
-    android:weightSum="10"
     android:orientation="vertical"
-    tools:showIn="@layout/app_bar_home">
+    android:padding="20dp"
+    android:weightSum="10"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".data.HomeActivity">
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -23,16 +22,16 @@
             android:id="@+id/textView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
             android:layout_weight="0.1"
             android:text="Livros para ler depois"
-            android:layout_marginBottom="10dp"
             android:textColor="#FFFFFF"
             android:textSize="20sp" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerHomeBooks"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="180dp"
             android:layout_weight="1"
 
             android:orientation="horizontal">
@@ -42,38 +41,38 @@
         <Button
             android:id="@+id/showMoreBooks"
 
-            android:layout_width="200dp"
-            android:layout_height="48dp"
+            android:layout_width="130dp"
+            android:layout_height="40dp"
             android:layout_gravity="center"
-            android:layout_marginTop="0dp"
             android:background="@drawable/btn_ver_mais_livros"
             android:shadowColor="#A8A8A8"
             android:shadowDx="0"
             android:shadowDy="0"
             android:shadowRadius="5"
+            android:layout_marginTop="10dp"
             android:text="Ver mais"
-            android:textColor="#000000"
-            android:textSize="20sp" />
+            android:textColor="#FFFFFF"
+            android:textSize="16sp" />
 
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="0dp"
+        android:layout_margin="1dp"
         android:layout_weight="5"
-        android:weightSum="10"
         android:orientation="vertical"
-        android:layout_margin="1dp">
+        android:weightSum="10">
 
         <TextView
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
             android:layout_weight="0.1"
             android:text="Filmes para ver depois"
-            android:layout_marginBottom="10dp"
             android:textColor="#FFFFFF"
-            android:textSize="20sp"
-            />
+            android:textSize="20sp" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerHomeFilms"
@@ -84,11 +83,12 @@
             android:orientation="horizontal">
 
         </android.support.v7.widget.RecyclerView>
+
         <Button
             android:id="@+id/showMoreFilms"
 
-            android:layout_width="200dp"
-            android:layout_height="48dp"
+            android:layout_width="130dp"
+            android:layout_height="40dp"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:background="@drawable/btn_ver_mais_livros"
@@ -97,8 +97,8 @@
             android:shadowDy="0"
             android:shadowRadius="5"
             android:text="Ver mais"
-            android:textColor="#000000"
-            android:textSize="20sp" />
+            android:textColor="#FFFFFF"
+            android:textSize="16sp" />
 
     </LinearLayout>
 </LinearLayout>

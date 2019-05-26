@@ -2,8 +2,10 @@ package com.example.mybookcase.data.model;
 
 import android.graphics.drawable.Drawable;
 import android.media.Image;
+import android.os.Parcel;
+import android.os.Parcelable;
 
-public class Item {
+public class Item implements Parcelable {
 
     /***
      * ====================== Lembrar de Limpar essa classe =========================
@@ -32,6 +34,15 @@ public class Item {
         this.setType(type);
         this.setIsAcervo(isAcervo);
         this.setImageByte(imageByte);
+    }
+
+    public Item(Parcel in){
+        this.setId(in.readInt());
+        this.setName(in.readString());
+        this.setDescription(in.readString());
+        this.setType(in.readString());
+        this.setIsAcervo(in.readString());
+        //this.setImage(in.read);
     }
 
     public String getName() {
@@ -102,5 +113,15 @@ public class Item {
 
     public void setImageByte(byte[] imageByte) {
         this.imageByte = imageByte;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+
     }
 }

@@ -3,14 +3,17 @@ package com.example.mybookcase.data;
 import android.nfc.Tag;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.example.mybookcase.R;
+import com.example.mybookcase.data.model.Item;
 
 import java.util.ArrayList;
 
@@ -21,12 +24,36 @@ public class FragmentoHomeDashboard extends Fragment {
 
     private ArrayList<String> mNames = new ArrayList<>();
     private ArrayList<String> mImageUrls = new ArrayList<>();
+    private ArrayList<Item> listaItem = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         minhaView = inflater.inflate(R.layout.laout_home_dashboard, container, false);
         getImages();
+
+        Button btnShowBooks = (Button) minhaView.findViewById(R.id.showMoreBooks);
+        Button btnShowFilms = (Button) minhaView.findViewById(R.id.showMoreFilms);
+
+        btnShowBooks.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.replace(R.id.conteudo_fragmento, new FragmentoIndicLivros());
+                ft.commit();
+            }
+        });
+
+        btnShowFilms.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.replace(R.id.conteudo_fragmento, new FragmentoIndicFIlmes());
+                ft.commit();
+            }
+        });
+
+
         return minhaView;
     }
 
@@ -65,6 +92,10 @@ public class FragmentoHomeDashboard extends Fragment {
 
     }
 
+    //public void changeActivityBooks(View v){
+    //    ((HomeActivity) getActivity()).getSupportFragmentManager().beginTransaction().replace(R.id.conteudo_fragmento, new FragmentoIndicLivros()).commit();
+    //}
+
     private void initRecyclerView(View v){
         Log.d(TAG, "initRecyclerView: init recyclerview");
 
@@ -74,5 +105,6 @@ public class FragmentoHomeDashboard extends Fragment {
         RecyclerViewAdapter adapter = new RecyclerViewAdapter(getContext(), mNames, mImageUrls);
         recyclerView.setAdapter(adapter);
     }
+
 
 }
