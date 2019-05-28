@@ -5,6 +5,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +14,6 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.mybookcase.InsidePageItem;
 import com.example.mybookcase.R;
 import com.example.mybookcase.data.model.Item;
 import com.example.mybookcase.data.persistence.ItemDAO;
@@ -30,7 +30,7 @@ public class FragmentoIndicFIlmes extends Fragment {
         super.onCreate(savedInstanceState);
 
         view = inflater.inflate(R.layout.layout_indic_filmes, container, false);
-
+        FloatingActionButton addIndicFilme = view.findViewById(R.id.addIndicFilme);
         ArrayList<Item> list = new ArrayList<>();
 
         try{
@@ -58,7 +58,7 @@ public class FragmentoIndicFIlmes extends Fragment {
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    Toast.makeText(getContext(), ((Item)parent.getItemAtPosition(position)).getId().toString(), Toast.LENGTH_SHORT).show();
+
                     Item item = (Item) parent.getItemAtPosition(position);
 
                     Bundle args = new Bundle();
@@ -76,6 +76,18 @@ public class FragmentoIndicFIlmes extends Fragment {
             });
 
         }
+
+        addIndicFilme.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle details = new Bundle();
+                details.putString("type", "movie");
+                details.putString("isAcervo", "n");
+                Intent intent = new Intent(getContext(),RegisterItemActivity.class);
+                intent.putExtra("details", details);
+                startActivity(intent);
+            }
+        });
 
         return view;
     }

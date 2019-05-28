@@ -3,6 +3,10 @@
     package="com.example.mybookcase">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-feature android:name="android.hardware.camera"
+        android:required="true"/>
 
     <application
         android:allowBackup="true"
@@ -11,7 +15,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".InsidePageItem"></activity>
+        <activity
+            android:name=".TestButton"
+            android:label="@string/title_activity_test_button"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".data.InsidePageItem" />
         <activity
             android:name=".data.HomeActivity"
             android:label="@string/title_activity_home"
@@ -26,6 +34,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".data.RegisterItemActivity"/>
     </application>
 
 </manifest>

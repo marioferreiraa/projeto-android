@@ -132,4 +132,14 @@ public class ItemDAO {
         return listaPersonalizada;
     }
 
+    public int deleteItem(int id, String isAcervo, String type){
+        int resultado = 1000;
+        try{
+            resultado = myDatabase.delete("table_item", "ID_ITEM = "+id+" AND IS_ACERVO = '" + isAcervo + "' AND TYPE = '" + type + "'",null);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        Log.d("Resultado", "Resultado - "+resultado);
+        return resultado;
+    }
 }

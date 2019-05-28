@@ -5,22 +5,21 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewStub;
 import android.widget.AdapterView;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.mybookcase.InsidePageItem;
 import com.example.mybookcase.R;
 import com.example.mybookcase.data.model.Item;
 import com.example.mybookcase.data.persistence.ItemDAO;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class FragmentoAcervoLivros extends Fragment {
 
@@ -32,7 +31,7 @@ public class FragmentoAcervoLivros extends Fragment {
         super.onCreate(savedInstanceState);
 
         view = inflater.inflate(R.layout.layout_acervo_livros, container, false);
-
+        FloatingActionButton addAcervoLivro = view.findViewById(R.id.addAcervoLivro);
         ArrayList<Item> list = new ArrayList<>();
 
         try{
@@ -60,7 +59,7 @@ public class FragmentoAcervoLivros extends Fragment {
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    Toast.makeText(getContext(), ((Item)parent.getItemAtPosition(position)).getId().toString(), Toast.LENGTH_SHORT).show();
+
                     Item item = (Item) parent.getItemAtPosition(position);
 
                     Bundle args = new Bundle();
@@ -77,6 +76,18 @@ public class FragmentoAcervoLivros extends Fragment {
                 }
             });
         }
+
+        addAcervoLivro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle details = new Bundle();
+                details.putString("type", "book");
+                details.putString("isAcervo", "s");
+                Intent intent = new Intent(getContext(),RegisterItemActivity.class);
+                intent.putExtra("details", details);
+                startActivity(intent);
+            }
+        });
 
         return view;
 

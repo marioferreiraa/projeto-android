@@ -19,6 +19,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.mybookcase.R;
 import com.example.mybookcase.data.model.Item;
@@ -89,6 +90,13 @@ public class HomeActivity extends AppCompatActivity
         itemDAO.insertItem(item4);
         itemDAO.getItens();
         /*=========================Testes de inserir itens==========================================*/
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        FragmentoAcervoFilmes frag = new FragmentoAcervoFilmes();
+        Toast.makeText(HomeActivity.this,"Resumindo, andioasujd",Toast.LENGTH_SHORT);
     }
 
     @Override

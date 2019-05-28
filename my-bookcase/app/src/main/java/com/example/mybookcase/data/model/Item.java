@@ -45,6 +45,8 @@ public class Item implements Parcelable {
         //this.setImage(in.read);
     }
 
+    public Item() {}
+
     public String getName() {
         return name;
     }
