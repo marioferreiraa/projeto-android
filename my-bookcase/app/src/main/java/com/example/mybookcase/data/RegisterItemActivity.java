@@ -5,7 +5,9 @@ import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -51,6 +53,14 @@ public class RegisterItemActivity extends AppCompatActivity {
         final ImageButton captureImage = findViewById(R.id.captureImage);
         final ImageButton chooseImage = findViewById(R.id.chooseImage);
         final Bundle details = getIntent().getBundleExtra("details");
+        final Bundle alter = getIntent().getBundleExtra("alter");
+
+        if(alter != null && alter.getString("nome") != null ){
+            fieldName.setText(alter.getString("nome"));
+            fieldDesc.setText(alter.getString("descricao"));
+            Drawable imgModal = new BitmapDrawable(getResources(), BitmapFactory.decodeByteArray(alter.getByteArray("img"),0,alter.getByteArray("img").length));
+            fieldImage.setImageDrawable(imgModal);
+        }
 
         captureImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,21 +108,56 @@ public class RegisterItemActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Item item = new Item();
-                item.setName(fieldName.getText().toString());
-                item.setDescription(fieldDesc.getText().toString());
-                item.setType(details.getString("type"));
-                item.setIsAcervo(details.getString("isAcervo"));
-                item.setImageByte(imgViewToByte(fieldImage));
+                if(fieldName.getText().toString() == null || fieldName.getText().toString().isEmpty() || fieldName.getText().toString().equals("")){
+                    Toast.makeText(getApplicationContext(), "Preencha o Nome!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if(fieldDesc.getText().toString() == null || fieldDesc.getText().toString().isEmpty() || fieldDesc.getText().toString().equals("")){
+                    Toast.makeText(getApplicationContext(), "Preencha a Descrição!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if(imgViewToByte(fieldImage).length <= 0){
+                    Toast.makeText(getApplicationContext(), "Insira alguma imagem!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
-                try{
-                    ItemDAO itemDAO = new ItemDAO(getApplicationContext());
-                    long retorno = itemDAO.insertItem(item);
-                    if(retorno != -1){
-                        Toast.makeText(getApplicationContext(), "Item inserido com sucesso", Toast.LENGTH_LONG).show();
+                if(alter != null && alter.getString("nome") != null){
+                    Item item = new Item();
+                    item.setName(fieldName.getText().toString());
+                    item.setId(alter.getInt("id"));
+                    item.setDescription(fieldDesc.getText().toString());
+                    item.setType(alter.getString("type"));
+                    item.setIsAcervo(alter.getString("isAcervo"));
+                    item.setImageByte(imgViewToByte(fieldImage));
+
+                    try{
+                        ItemDAO itemDAO = new ItemDAO(getApplicationContext());
+                        itemDAO.alterarRegistro(item);
+                        Toast.makeText(getApplicationContext(), "Registro alterado com sucesso", Toast.LENGTH_LONG).show();
+                        finish();
+                    }catch (Exception e){
+                        e.printStackTrace();
                     }
-                }catch (Exception e){
-                    e.printStackTrace();
+
+                    //Toast.makeText(getApplicationContext(),"tentando alterar", Toast.LENGTH_SHORT).show();
+
+                }else{
+                    Item item = new Item();
+                    item.setName(fieldName.getText().toString());
+                    item.setDescription(fieldDesc.getText().toString());
+                    item.setType(details.getString("type"));
+                    item.setIsAcervo(details.getString("isAcervo"));
+                    item.setImageByte(imgViewToByte(fieldImage));
+
+                    try{
+                        ItemDAO itemDAO = new ItemDAO(getApplicationContext());
+                        long retorno = itemDAO.insertItem(item);
+                        if(retorno != -1){
+                            Toast.makeText(getApplicationContext(), "Item inserido com sucesso", Toast.LENGTH_LONG).show();
+                        }
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
                 }
             }
         });

@@ -142,4 +142,23 @@ public class ItemDAO {
         Log.d("Resultado", "Resultado - "+resultado);
         return resultado;
     }
+
+    public void alterarRegistro(Item item){
+        ContentValues valores = new ContentValues();
+        String where;
+
+        where = "ID_ITEM = "+item.getId();
+        valores.put("NAME", item.getName());
+        valores.put("DESCRIPTION", item.getDescription());
+        valores.put("TYPE", item.getType());
+        valores.put("IS_ACERVO", item.getIsAcervo());
+        valores.put("IMAGE", item.getImageByte());
+
+        try {
+            myDatabase.update("table_item",valores,where, null);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
 }

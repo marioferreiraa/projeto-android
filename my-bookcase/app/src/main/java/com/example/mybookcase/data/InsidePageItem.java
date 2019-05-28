@@ -1,5 +1,6 @@
 package com.example.mybookcase.data;
 
+import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -25,6 +26,7 @@ public class InsidePageItem extends AppCompatActivity {
     TextView itemVerMais;
     String descricao;
     ImageButton deletar;
+    ImageButton alterar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +38,7 @@ public class InsidePageItem extends AppCompatActivity {
         itemDescription = findViewById(R.id.itemDescription);
         itemVerMais = findViewById(R.id.itemVerMais);
         deletar = (ImageButton) findViewById(R.id.deletar);
+        alterar = (ImageButton) findViewById(R.id.alterar);
 
         final Bundle args = getIntent().getBundleExtra("args");
 
@@ -94,6 +97,23 @@ public class InsidePageItem extends AppCompatActivity {
                 });
 
                 dialog.show();
+            }
+        });
+
+        alterar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle alter = new Bundle();
+                alter.putInt("id", args.getInt("id"));
+                alter.putString("nome", args.getString("nome"));
+                alter.putString("descricao", args.getString("descricao"));
+                alter.putByteArray("img", args.getByteArray("image"));
+                alter.putString("isAcervo", args.getString("isAcervo"));
+                alter.putString("type", args.getString("type"));
+
+                Intent intentAlterar = new Intent(getApplicationContext(), RegisterItemActivity.class);
+                intentAlterar.putExtra("alter", alter);
+                startActivity(intentAlterar);
             }
         });
 

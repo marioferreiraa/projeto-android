@@ -84,11 +84,11 @@ public class HomeActivity extends AppCompatActivity
                 "s",
                 imgParsed);
 
-        itemDAO.insertItem(item1);
-        itemDAO.insertItem(item2);
-        itemDAO.insertItem(item3);
-        itemDAO.insertItem(item4);
-        itemDAO.getItens();
+        //itemDAO.insertItem(item1);
+        //itemDAO.insertItem(item2);
+        //itemDAO.insertItem(item3);
+        //itemDAO.insertItem(item4);
+        //itemDAO.getItens();
         /*=========================Testes de inserir itens==========================================*/
     }
 
